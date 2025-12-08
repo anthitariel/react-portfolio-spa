@@ -68,7 +68,7 @@ function Contacts() {
               <span className="font-medium">Anthitariel</span>
               <CreditLinkIcon /> 
             </a>. Feel free to explore the full source code on 
-            <a href="https://github.com/anthitarie" className="text-accent font-medium hover:underline ml-1">
+            <a href="https://github.com/anthitariel" className="text-accent font-medium hover:underline ml-1">
               GitHub
             </a>
           </p>
