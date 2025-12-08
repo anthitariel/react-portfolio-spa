@@ -1,0 +1,42 @@
+export const projects = [
+  {
+    title: "E-Commerce",
+    source: "Accesa",
+    description: "A responsive e-commerce web application featuring a product catalog and a smooth checkout flow.",
+    details: "Implemented client-side state management for the shopping cart and checkout process. Utilizes direct DOM manipulation for performant updates and features a fully responsive product grid layout, demonstrating proficiency in vanilla JavaScript application logic.",
+    stack: ["JavaScript", "HTML", "CSS"],
+    link: "https://github.com/anthitariel/js-ecommerce-website/",
+  },
+  {
+    title: "Landing Travel",
+    source: "WayUp 2021",
+    description: "A set of optimized, mobile-first marketing landing pages focused on content clarity and conversion.",
+    details: "A micro-project focused on delivering high page speed scores. Implements modern CSS techniques (e.g., Flexbox/Grid) for robust responsive design, emphasizing content hierarchy and clear Calls-to-Action (CTAs).",
+    stack: ["HTML", "CSS"],
+    link: "landing/landing.html",
+  },
+  {
+    title: "Bill Splitter App",
+    source: "Coursera",
+    description: "A single-page utility application for accurately calculating and splitting group expenses.",
+    details: "A foundational Single Page Application (SPA) demonstrating the power of two-way data binding and dependency injection in AngularJS. Follows a clear modular structure to separate application concerns for computation and UI rendering.",
+    stack: ["Angular.js", "HTML", "CSS"],
+    link: "https://github.com/anthitariel/angularjs-bill-splitter-app-coursera/",
+  },
+  {
+    title: "Weather App",
+    source: "Coursera",
+    description: "A dynamic web application that fetches and displays real-time weather data based on user location or input.",
+    details: "Demonstrates practical API consumption using asynchronous JavaScript (`fetch`) patterns to retrieve and sanitize external JSON data. Includes error handling and dynamic UI updates based on forecast conditions.",
+    stack: ["JavaScript", "HTML", "CSS"],
+    link: "https://github.com/anthitariel/js-weather-app/",
+  },
+  {
+    title: "Magic 8 Ball",
+    source: "Codecademy 2022",
+    description: "A simple, fun application simulating the classic Magic 8 Ball toy for generating random fortunes.",
+    details: "A learning project focused on mastering fundamental JavaScript control flow (`if/else`, `switch`) and data structures (Arrays). Implements clear separation of concerns between the presentation layer and application logic.",
+    stack: ["JavaScript", "HTML", "CSS"],
+    link: "https://github.com/anthitariel/js-magic-8-ball-codecademy/",
+  },
+];

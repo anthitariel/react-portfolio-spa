@@ -1,0 +1,32 @@
+{
+  "name": "react-portfolio-spa",
+  "homepage": "https://anthitariel.github.io/react-portfolio-spa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontend Software Engineer portfolio built with React, Vite, Framer Motion, and Tailwind CSS.",
+  "author": "Anfisa Domashova",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "@studio-freight/lenis": "^1.0.42",
+    "framer-motion": "^11.0.0",
+    "gh-pages": "^6.3.0",
+    "glider-js": "^1.7.9",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.14",
+    "vite": "^6.0.0"
+  }
+}
