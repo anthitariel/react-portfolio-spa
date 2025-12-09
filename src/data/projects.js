@@ -1,19 +1,19 @@
 export const projects = [
   {
     title: "E-Commerce",
-    source: "Accesa",
+    source: "Accesa (figma to web)",
     description: "A responsive e-commerce web application featuring a product catalog and a smooth checkout flow.",
     details: "Implemented client-side state management for the shopping cart and checkout process. Utilizes direct DOM manipulation for performant updates and features a fully responsive product grid layout, demonstrating proficiency in vanilla JavaScript application logic.",
     stack: ["JavaScript", "HTML", "CSS"],
     link: "https://github.com/anthitariel/js-ecommerce-website/",
   },
   {
-    title: "Landing Travel",
-    source: "WayUp 2021",
-    description: "A set of optimized, mobile-first marketing landing pages focused on content clarity and conversion.",
-    details: "A micro-project focused on delivering high page speed scores. Implements modern CSS techniques (e.g., Flexbox/Grid) for robust responsive design, emphasizing content hierarchy and clear Calls-to-Action (CTAs).",
+    title: "Minimo Landing Page",
+    source: "Test task (psd to web)",
+    description: "A modern, responsive landing page created from a PSD design, built with HTML5, CSS3 (Flexbox/Grid), ES6+ JavaScript, and a Python Flask backend for API handling.",
+    details: "Responsive Layout built with Flexbox and CSS Grid. Fixed Header & Smooth Scrolling for better navigation. Interactive UI Elements including selectable pricing cards and a mobile-friendly hamburger menu. Functional Contact Form powered by a Flask API and asynchronous fetch requests. Clean Codebase using HTML5 semantics, modular CSS, and modern ES6+ JavaScript.",
     stack: ["HTML", "CSS"],
-    link: "landing/landing.html",
+    link: "https://github.com/anthitariel/minimo-landing-page/settings/pages",
   },
   {
     title: "Bill Splitter App",

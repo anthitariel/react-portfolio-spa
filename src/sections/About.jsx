@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import SectionTitle from "../common/Typography/SectionTitle";
+import Text from "../common/Typography/Text"; 
 
 const DIAMOND_CLASSES = "flex items-start before:content-['◆'] before:text-accent before:text-xs before:mr-2 before:mt-1 before:shrink-0";
 
@@ -17,20 +19,23 @@ const DiamondListItem = ({ children }) => (
 
 function About() {
   return (
-    <div className="section-wrapper pt-24 md:pt-28">
+    <div className="pt-12 md:pt-20 pb-12 md:pb-20">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="mb-12"
       >
-        <h2 className="section-title text-slate-700 dark:text-slate-300">About</h2>
-        <p className="text-slate-700 dark:text-slate-300 mb-4">
+        <SectionTitle className="text-slate-700 dark:text-slate-300">
+          About
+        </SectionTitle>
+        
+        <Text className="mb-4">
           I collaborate with product teams to ship performant, accessible and visually consistent applications.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 mb-4">
+        </Text>
+        <Text className="mb-4">
           My expertise lies in creating user-friendly, responsive, mobile-first interfaces with focus on clean architecture.
-        </p>
+        </Text>
       </motion.div>
 
       <motion.div
@@ -42,7 +47,7 @@ function About() {
           Value Delivered
         </h3>
 
-        <ul className="space-y-3 text-slate-700 dark:text-slate-300">
+        <ul className="space-y-3">
           {VALUE_POINTS.map((point, index) => (
             <DiamondListItem key={index}>
               {point}
