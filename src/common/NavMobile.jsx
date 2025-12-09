@@ -2,7 +2,7 @@ import {sections} from "../data/sections";
 
 export function NavMobile({ active, onNav }) {
   return (
-    <nav className="max-w-5xl mx-auto px-4 py-3 flex items-start gap-3 text-sm">
+    <nav className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between text-sm">
       {sections.map(s => (
         <button
           key={s.id}

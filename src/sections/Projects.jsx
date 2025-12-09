@@ -3,20 +3,17 @@ import { motion } from "framer-motion";
 import { projects } from "../data/projects";
 import SectionTitle from "./../common/Typography/SectionTitle"; 
 import UniversalModal from "../common/UniversalModal";
+import Text from "../common/Typography/Text"; 
 
-/**
- * ProjectContent - Modal component displaying project details
- * Shows project description, tech stack, and GitHub link
- */
 function ProjectContent({ project, onClose }) {
   if (!project) return null;
 
   return (
     <div>
       <div className="px-5 py-4 text-sm">
-        <p className="text-slate-700 dark:text-slate-200 mb-3">
+         <Text className="mb-3">
           {project.details || project.description}
-        </p>
+        </Text>
 
         <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-2">
           Tech stack
@@ -120,9 +117,12 @@ function Projects() {
         <SectionTitle className="text-slate-700 dark:text-slate-300">
           Case Studies
         </SectionTitle>
-        <p className="section-subtitle max-w-2xl">
+
+        <Text className="section-subtitle max-w-2xl">
           Guided by the K.I.S.S. principle and clean code practices, I build projects that are easy to use and maintain.
-        </p>
+        </Text>
+
+        
       </motion.div>
 
       {/* Carousel container with touch support */}
@@ -157,9 +157,12 @@ function Projects() {
                             {project.title}
                           </h3>
 
-                          <p className="text-sm text-slate-700 dark:text-slate-300 mb-3">
-                            {project.description}
+                          <p className=" text-slate-700 dark:text-slate-300 ">
+                            
                           </p>
+                                  <Text className="section-subtitle mb-3 text-sm">
+        {project.description}
+        </Text>
 
                           {/* Technology tags */}
                           <ul className="flex flex-wrap gap-2 text-[0.7rem] text-slate-600 dark:text-slate-300 mb-2">

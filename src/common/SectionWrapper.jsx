@@ -4,9 +4,10 @@ const SectionWrapper = ({ id, children, className = '' }) => {
       id={id} 
       className={`snap-section 
         min-h-fit md:min-h-screen 
-        md:flex md:items-center md:justify-center 
-        bg-white dark:bg-black 
-        max-w-5xl mx-auto px-4 
+        flex items-start sm:items-center sm:justify-center 
+        max-w-5xl mx-auto 
+        px-4 
+        py-24 sm:py-0
        ${className}`}
     >
       {children}
