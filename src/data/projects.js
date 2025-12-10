@@ -13,7 +13,7 @@ export const projects = [
     description: "A modern, responsive landing page created from a PSD design, built with HTML5, CSS3 (Flexbox/Grid), ES6+ JavaScript, and a Python Flask backend for API handling.",
     details: "Responsive Layout built with Flexbox and CSS Grid. Fixed Header & Smooth Scrolling for better navigation. Interactive UI Elements including selectable pricing cards and a mobile-friendly hamburger menu. Functional Contact Form powered by a Flask API and asynchronous fetch requests. Clean Codebase using HTML5 semantics, modular CSS, and modern ES6+ JavaScript.",
     stack: ["HTML", "CSS"],
-    link: "https://github.com/anthitariel/minimo-landing-page/settings/pages",
+    link: "https://github.com/anthitariel/minimo-landing-page/",
   },
   {
     title: "Bill Splitter App",
@@ -30,13 +30,5 @@ export const projects = [
     details: "Demonstrates practical API consumption using asynchronous JavaScript (`fetch`) patterns to retrieve and sanitize external JSON data. Includes error handling and dynamic UI updates based on forecast conditions.",
     stack: ["JavaScript", "HTML", "CSS"],
     link: "https://github.com/anthitariel/js-weather-app/",
-  },
-  {
-    title: "Magic 8 Ball",
-    source: "Codecademy 2022",
-    description: "A simple, fun application simulating the classic Magic 8 Ball toy for generating random fortunes.",
-    details: "A learning project focused on mastering fundamental JavaScript control flow (`if/else`, `switch`) and data structures (Arrays). Implements clear separation of concerns between the presentation layer and application logic.",
-    stack: ["JavaScript", "HTML", "CSS"],
-    link: "https://github.com/anthitariel/js-magic-8-ball-codecademy/",
-  },
+  }
 ];
