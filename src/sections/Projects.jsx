@@ -4,6 +4,7 @@ import { projects } from "../data/projects";
 import SectionTitle from "./../common/Typography/SectionTitle"; 
 import UniversalModal from "../common/UniversalModal";
 import Text from "../common/Typography/Text"; 
+import Button from "../common/Button";
 
 function ProjectContent({ project, onClose }) {
   if (!project) return null;
@@ -32,17 +33,36 @@ function ProjectContent({ project, onClose }) {
       </div>
 
       <div className="px-5 py-4 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between shrink-0">
-        <a
-          href={project.link}
-          target="_blank"
-          rel="noreferrer"
-          className="btn-primary text-center justify-center"
-        >
-          Open on GitHub
-        </a>
+        
+        <div className="flex flex-col gap-3 sm:flex-row"> 
+            
+            {project.demoLink && (
+                 <Button 
+                    as="a"
+                    href={project.demoLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-center justify-center" 
+                >
+                    Live Demo
+                </Button>
+            )}
+
+            <Button 
+                as="a"
+                href={project.link}
+                target="_blank"
+                rel="noreferrer"
+                className="text-center justify-center" 
+            >
+                Open on GitHub
+            </Button>
+        </div>
+
+        {/* Close Button - Placed at the end/right */}
         <button
           onClick={onClose}
-          className="text-xs text-slate-600 dark:text-slate-400 hover:text-accent"
+          className="text-xs text-slate-600 dark:text-slate-400 hover:text-accent sm:ml-auto"
         >
           Close
         </button>
@@ -83,6 +103,7 @@ function Projects() {
   }
   const totalPages = pages.length;
 
+  // Reset to first page when perView changes
   useEffect(() => {
     setPageIndex(0);
   }, [perView, projects.length]);
@@ -93,6 +114,9 @@ function Projects() {
 
   // Touch swipe handlers - detect left/right swipe with 50px threshold
   const handleTouchStart = e => {
+    // Check if a card was clicked/tapped, if so, don't start the drag
+    if (e.target.closest('button, a, .group')) return; 
+
     touchStartX.current = e.changedTouches[0].clientX;
   };
 
@@ -157,12 +181,10 @@ function Projects() {
                             {project.title}
                           </h3>
 
-                          <p className=" text-slate-700 dark:text-slate-300 ">
-                            
-                          </p>
-                                  <Text className="section-subtitle mb-3 text-sm">
-        {project.description}
-        </Text>
+
+                          <Text className="mb-3 text-sm">
+                            {project.description}
+                          </Text>
 
                           {/* Technology tags */}
                           <ul className="flex flex-wrap gap-2 text-[0.7rem] text-slate-600 dark:text-slate-300 mb-2">

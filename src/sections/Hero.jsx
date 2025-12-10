@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Button from "./../common/Button";
 
 // Animation configuration for staggered entrance effects
 const ANIMATION_CONFIG = {
@@ -51,9 +52,9 @@ function Hero() {
           transition={{ duration: 0.6, delay: 0.25 }}
           className="flex flex-wrap gap-4"
         >
-          <a href="#projects" className="btn-primary">
+          <Button as="a" href="#projects"> 
             View Case Studies
-          </a>
+          </Button>
         </motion.div>
       </div>
 
