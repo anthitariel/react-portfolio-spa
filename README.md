@@ -4,8 +4,8 @@
 ![Vite](https://img.shields.io/badge/Vite-5+-646CFF?logo=vite&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3+-38BDF8?logo=tailwindcss&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-Animation-black?logo=framer)
-![License](https://img.shields.io/github/license/USERNAME/REPO_NAME)
-![Last Commit](https://img.shields.io/github/last-commit/USERNAME/REPO_NAME)
+![License](https://img.shields.io/github/license/anthitariel/react-portfolio-spa)
+![Last Commit](https://img.shields.io/github/last-commit/anthitariel/react-portfolio-spa)
 
 A modern, responsive Single-Page Application (SPA) showcasing the portfolio and case studies of **Frontend Software Engineer, Anfisa Domashova**. Built using **React, Framer Motion, and Tailwind CSS** for high performance and maintainability.
 
