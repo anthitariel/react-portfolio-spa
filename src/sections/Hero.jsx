@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Button from "./../common/Button";
+import Button from "./../ui/Button";
 
 // Animation configuration for staggered entrance effects
 const ANIMATION_CONFIG = {
@@ -18,7 +18,7 @@ const IMAGE_ANIMATION = {
 // Hero section component with introduction and profile image
 function Hero() {
   return (
-    <div className="grid md:grid-cols-2 gap-10 items-center pt-12 md:pt-20 pb-12 md:pb-20 min-h-screen">
+    <div className="grid md:grid-cols-2 gap-10 items-center">
       {/* Left column: Text content */}
       <div className="flex flex-col justify-center">
         {/* Professional title badge */}
@@ -29,7 +29,7 @@ function Hero() {
         {/* Main headline with gradient text effect */}
         <motion.h1
           {...ANIMATION_CONFIG}
-          className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-slate-700 dark:text-slate-300"
+          className="text-lg md:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-slate-700 dark:text-slate-300"
         >
           I architect and build
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-sky-400">
@@ -41,7 +41,7 @@ function Hero() {
         <motion.p
           {...ANIMATION_CONFIG}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="text-lg text-slate-700 dark:text-slate-300 mb-8 max-w-xl"
+          className="text-sm md:text-lg text-slate-700 dark:text-slate-300 mb-8 max-w-xl"
         >
           I specialize in the design and implementation of high-performance, resilient, and mobile-first user interfaces. I drive feature ownership from concept to production, focusing on clean, maintainable architecture.
         </motion.p>

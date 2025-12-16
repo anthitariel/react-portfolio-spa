@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
-import SectionTitle from "../common/Typography/SectionTitle";
-import Text from "../common/Typography/Text"; 
+import SectionTitle from "./../assets/SectionTitle";
+import SectionSubtitle from "./../assets/SectionTitle";
+import Text from "./../assets/Text";
+import Button from "./../ui/Button"; 
 
-const DIAMOND_CLASSES = "flex items-start before:content-['◆'] before:text-accent before:text-xs before:mr-2 before:mt-1 before:shrink-0";
+const DIAMOND_CLASSES = "text-xs md:text-base flex items-start before:content-['◆'] before:text-accent before:text-xs before:mr-2 before:mt-1 before:shrink-0";
 
 const VALUE_POINTS = [
   "Deep expertise across the entire frontend product lifecycle.",
@@ -19,23 +21,20 @@ const DiamondListItem = ({ children }) => (
 
 function About() {
   return (
-    <div className="pt-12 md:pt-20 pb-12 md:pb-20">
+    <div>
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-12"
+        className="mb-4"
       >
-        <SectionTitle className="text-slate-700 dark:text-slate-300">
+        <SectionTitle>
           About
         </SectionTitle>
         
-        <Text className="mb-4">
-          I collaborate with product teams to ship performant, accessible and visually consistent applications.
-        </Text>
-        <Text className="mb-4">
-          My expertise lies in creating user-friendly, responsive, mobile-first interfaces with focus on clean architecture.
-        </Text>
+        <Text >
+          I collaborate with product teams to ship performant, accessible and visually consistent applications. My expertise lies in creating user-friendly, responsive, mobile-first interfaces with focus on clean architecture.
+          </Text>
       </motion.div>
 
       <motion.div
@@ -43,11 +42,11 @@ function About() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
       >
-        <h3 className="text-xl font-semibold border-b border-slate-700 pb-2 text-slate-700 dark:text-slate-300 mb-6">
+        <SectionSubtitle>
           Value Delivered
-        </h3>
+        </SectionSubtitle>
 
-        <ul className="space-y-3">
+        <ul className="space-y-2">
           {VALUE_POINTS.map((point, index) => (
             <DiamondListItem key={index}>
               {point}
@@ -56,18 +55,21 @@ function About() {
         </ul>
       </motion.div>
 
-      <motion.div
+     <motion.div
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.25 }}
-        className="mt-8"
+        className="mt-6"
       >
-        <a
+        <Button
+          as="a" 
           href="#contacts"
-          className="inline-flex items-center gap-2 text-slate-700 pb-2 dark:text-slate-200 border-b border-transparent hover:border-accent transition"
+          variant="link"
+          className="text-slate-700 dark:text-slate-200 
+                     hover:border-accent hover:text-accent" 
         >
           Get in Touch &rarr;
-        </a>
+        </Button>
       </motion.div>
     </div>
   );

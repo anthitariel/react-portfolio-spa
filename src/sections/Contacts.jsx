@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import SectionTitle from "./../common/Typography/SectionTitle";
-import { LinkIcon, GitHubIcon, InstagramIcon, TwitterIcon, LinkedInIcon } from "./../common/Icons";
+import SectionTitle from "./../assets/SectionTitle";
+import Text from "./../assets/Text";
+import { LinkIcon, GitHubIcon, InstagramIcon, TwitterIcon, LinkedInIcon } from "./../assets/Icons";
 
 const ICON_SHARED_CLASSES = "w-5 h-5 fill-current";
 
@@ -29,24 +30,26 @@ function Contacts() {
   const CreditLinkIcon = (props) => <LinkIcon {...props} className="h-4 w-4 ml-1 inline-block stroke-current" />;
 
   return (
-    <div className="pt-12 md:pt-20 pb-12 md:pb-20">
+    <div>
       <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-        <SectionTitle className="text-slate-700 dark:text-slate-300">Connect & Collaborate</SectionTitle>
+        <SectionTitle>
+          Connect & Collaborate
+          </SectionTitle>
 
         <div className="max-w-xl mb-12">
-          <p className="text-xl font-medium mb-6 text-slate-700 dark:text-slate-300">
+          <Text>
             I'm always open to discussing new opportunities, fascinating projects, or sharing insights on the modern web stack.
-          </p>
+          </Text>
 
-          <p className="text-slate-700 dark:text-slate-300 text-lg mb-4">
+          <Text>
             The quickest way to start a conversation is to send me a
             <a href="mailto:anfiya17@gmail.com" className="text-accent font-medium hover:underline ml-1">
               message
             </a>
             .
-          </p>
+          </Text>
 
-          <p className="text-sm text-slate-600 dark:text-slate-400 mt-8 border-t border-slate-300 dark:border-slate-800 pt-4">
+          <Text>
             This portfolio was meticulously crafted by{" "}
             <a
               href="https://github.com/anthitariel"
@@ -61,7 +64,7 @@ function Contacts() {
             <a href="https://github.com/anthitariel/react-portfolio-spa" className="text-accent font-medium hover:underline ml-1">
               GitHub
             </a>
-          </p>
+          </Text>
         </div>
       </motion.div>
 

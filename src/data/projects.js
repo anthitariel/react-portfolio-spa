@@ -1,5 +1,6 @@
 export const projects = [
   {
+    id: 1,
     title: "E-Commerce",
     source: "Accesa (figma to web)",
     description: "Fully responsive E-commerce platform with a robust product catalog and a seamless, performant checkout process.",
@@ -7,8 +8,10 @@ export const projects = [
     stack: ["JavaScript", "HTML", "CSS"],
     link: "https://github.com/anthitariel/js-ecommerce-website/",
     demoLink: "https://anthitariel.github.io/js-ecommerce-website/",
+    imageSrc: "/react-portfolio-spa/img/js-ecommerce-website.jpg", 
   },
   {
+    id: 2,
     title: "Minimo Landing Page",
     source: "Test task (psd to web)",
     description: "Pixel-perfect, modern landing page engineered from a PSD design, featuring interactive elements and a functional backend for API handling.",
@@ -16,8 +19,10 @@ export const projects = [
     stack: ["HTML", "CSS", "Python (Flask)"],
     link: "https://github.com/anthitariel/minimo-landing-page/",
     demoLink: "https://anthitariel.github.io/minimo-landing-page/",
+    imageSrc: "/react-portfolio-spa/img/minimo-landing-page.jpg", 
   },
   {
+    id: 3,
     title: "Bill Splitter App",
     source: "Coursera",
     description: "A practical Single-Page Application (SPA) designed for precise calculation and splitting of group dining expenses.",
@@ -25,14 +30,17 @@ export const projects = [
     stack: ["Angular.js", "HTML", "CSS"],
     link: "https://github.com/anthitariel/angularjs-bill-splitter-app-coursera/",
     demoLink: "https://anthitariel.github.io/angularjs-bill-splitter-app-coursera/",
+    imageSrc: "/react-portfolio-spa/img/angularjs-bill-splitter-app-coursera.jpg", 
   },
   {
+    id: 4,
     title: "Weather App",
     source: "Coursera",
     description: "Dynamic web app for real-time weather data, allowing lookups by location or utilizing the user's current GPS position.",
     details: "Showcases practical API consumption using modern asynchronous JavaScript (`fetch`). Features robust error handling and dynamic UI rendering that visually adapts to different forecast conditions.",
     stack: ["JavaScript", "HTML", "CSS"],
     link: "https://github.com/anthitariel/js-weather-app/",
-    demoLink: "https://anthitariel.github.io/js-weather-app//",
+    demoLink: "https://anthitariel.github.io/js-weather-app/",
+    imageSrc: "/react-portfolio-spa/img/js-weather-app.jpg", 
   }
 ];

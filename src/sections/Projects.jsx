@@ -1,16 +1,49 @@
-import { useEffect, useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { projects } from "../data/projects";
-import SectionTitle from "./../common/Typography/SectionTitle"; 
-import UniversalModal from "../common/UniversalModal";
-import Text from "../common/Typography/Text"; 
-import Button from "../common/Button";
+import SectionTitle from "../assets/SectionTitle";
+import Text from "../assets/Text";
+import UniversalModal from "./../layout/UniversalModal";
+import Button from "./../ui/Button"; 
+import ProjectTile from "./../ui/ProjectTile";
+import { ChevronLeftIcon, ChevronRightIcon } from "../assets/Icons";
 
 function ProjectContent({ project, onClose }) {
   if (!project) return null;
 
   return (
     <div>
+      <div className="w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+        {project.demoLink ? (
+            <a
+                href={project.demoLink}
+                target="_blank"
+                rel="noreferrer"
+                className="relative block group cursor-pointer"
+            >
+                <img
+                    src={project.imageSrc}
+                    alt={`Preview of ${project.title}`}
+                    className="w-full h-full object-cover transition duration-300 group-hover:opacity-30"
+                />
+
+                <div 
+                    className="absolute inset-0 flex items-center justify-center 
+                               opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none
+                               text-3xl font-extrabold uppercase tracking-widest"
+                >
+                    Live Demo
+                </div>
+            </a>
+        ) : (
+            <img
+                src={project.imageSrc}
+                alt={`Preview of ${project.title}`}
+                className="w-full h-full object-cover"
+            />
+        )}
+      </div>
+
       <div className="px-5 py-4 text-sm">
          <Text className="mb-3">
           {project.details || project.description}
@@ -42,7 +75,7 @@ function ProjectContent({ project, onClose }) {
                     href={project.demoLink}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-center justify-center" 
+                    className="text-center justify-center bg-accent text-white hover:bg-accent-dark" 
                 >
                     Live Demo
                 </Button>
@@ -53,13 +86,12 @@ function ProjectContent({ project, onClose }) {
                 href={project.link}
                 target="_blank"
                 rel="noreferrer"
-                className="text-center justify-center" 
+                className="text-center justify-center border border-slate-300 dark:border-slate-700 hover:border-accent" 
             >
                 Open on GitHub
             </Button>
         </div>
 
-        {/* Close Button - Placed at the end/right */}
         <button
           onClick={onClose}
           className="text-xs text-slate-600 dark:text-slate-400 hover:text-accent sm:ml-auto"
@@ -71,10 +103,7 @@ function ProjectContent({ project, onClose }) {
   );
 }
 
-/**
- * Projects - Main section component
- * Features: carousel with touch swipe support, pagination, and project modal
- */
+
 function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [perView, setPerView] = useState(1);
@@ -82,7 +111,6 @@ function Projects() {
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
-  // Responsive carousel - adjust items per view based on screen width
   useEffect(() => {
     const updatePerView = () => {
       const width = window.innerWidth;
@@ -96,31 +124,28 @@ function Projects() {
     return () => window.removeEventListener("resize", updatePerView);
   }, []);
 
-  // Paginate projects array based on perView
   const pages = [];
   for (let i = 0; i < projects.length; i += perView) {
     pages.push(projects.slice(i, i + perView));
   }
   const totalPages = pages.length;
 
-  // Reset to first page when perView changes
   useEffect(() => {
     setPageIndex(0);
   }, [perView, projects.length]);
 
-  // Navigation helpers
   const goPrev = () => setPageIndex(i => Math.max(0, i - 1));
   const goNext = () => setPageIndex(i => Math.min(totalPages - 1, i + 1));
 
-  // Touch swipe handlers - detect left/right swipe with 50px threshold
   const handleTouchStart = e => {
-    // Check if a card was clicked/tapped, if so, don't start the drag
-    if (e.target.closest('button, a, .group')) return; 
+    if (e.target.closest('button, a, .group') || totalPages <= 1) return; 
 
     touchStartX.current = e.changedTouches[0].clientX;
   };
 
   const handleTouchEnd = e => {
+    if (totalPages <= 1) return;
+    
     touchEndX.current = e.changedTouches[0].clientX;
     const distance = touchStartX.current - touchEndX.current;
     const threshold = 50;
@@ -129,9 +154,9 @@ function Projects() {
     if (distance < -threshold) goPrev();
   };
 
+
   return (
     <div className="pt-12 md:pt-20 pb-12 md:pb-20">
-      {/* Section header */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -139,24 +164,48 @@ function Projects() {
         transition={{ duration: 0.5 }}
       >
         <SectionTitle className="text-slate-700 dark:text-slate-300">
-          Case Studies
+            Case Studies
         </SectionTitle>
-
+        
         <Text className="section-subtitle max-w-2xl">
           Guided by the K.I.S.S. principle and clean code practices, I build projects that are easy to use and maintain.
         </Text>
-
-        
       </motion.div>
 
-      {/* Carousel container with touch support */}
       <div 
-        className="relative mt-8 select-none"
+        className="relative mt-6 select-none px-0 md:px-12" 
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
+        
+        {totalPages > 1 && (
+          <>
+            <button
+              onClick={goPrev}
+              disabled={pageIndex === 0}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 
+                         text-accent w-10 h-10 transition-colors 
+                         hover:text-sky-400 dark:hover:text-sky-300 
+                         disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
+              aria-label="Previous slide"
+            >
+              <ChevronLeftIcon className="w-8 h-8"/>
+            </button>
+
+            <button
+              onClick={goNext}
+              disabled={pageIndex === totalPages - 1}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 
+                         text-accent w-10 h-10 transition-colors 
+                         hover:text-sky-400 dark:hover:text-sky-300 
+                         disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
+              aria-label="Next slide"
+            >
+              <ChevronRightIcon className="w-8 h-8"/>
+            </button>
+          </>
+        )}
         <div className="overflow-hidden">
-          {/* Slides container - translates based on pageIndex */}
           <div
             className="flex transition-transform duration-300 ease-out"
             style={{ transform: `translateX(-${pageIndex * 100}%)` }}
@@ -165,45 +214,11 @@ function Projects() {
               <div key={pageIdx} className="flex-none w-full">
                 <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                   {page.map(project => (
-                    <motion.article
+                    <ProjectTile
                       key={project.title}
-                      className="group cursor-pointer"
-                      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{ duration: 0.45 }}
+                      item={project}
                       onClick={() => setSelectedProject(project)}
-                    >
-                      {/* Project card */}
-                      <div className="h-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 p-5 flex flex-col justify-between hover:border-accent hover:shadow-xl hover:shadow-accent/10 transition duration-300 group-hover:bg-accent">
-                        <div>
-                          <h3 className="text-lg font-semibold mb-2 text-slate-700 dark:text-slate-300">
-                            {project.title}
-                          </h3>
-
-
-                          <Text className="mb-3 text-sm">
-                            {project.description}
-                          </Text>
-
-                          {/* Technology tags */}
-                          <ul className="flex flex-wrap gap-2 text-[0.7rem] text-slate-600 dark:text-slate-300 mb-2">
-                            {project.stack.map(tech => (
-                              <li
-                                key={tech}
-                                className="rounded-full border border-slate-300 dark:border-slate-700 px-3 py-1 bg-white/80 dark:bg-slate-900/60"
-                              >
-                                {tech}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        <button className="inline-flex items-center text-xs mt-2 px-0 py-0 text-accent group-hover:text-slate-900 group-hover:text-sm transition font-semibold">
-                          Learn more
-                        </button>
-                      </div>
-                    </motion.article>
+                    />
                   ))}
                 </div>
               </div>
@@ -211,7 +226,6 @@ function Projects() {
           </div>
         </div>
 
-        {/* Pagination dots - clickable page indicators */}
         {totalPages > 1 && (
           <div className="flex justify-center mt-6 gap-3">
             {pages.map((_, idx) => (
@@ -228,12 +242,11 @@ function Projects() {
         )}
       </div>
 
-      {/* Project details modal */}
       <UniversalModal
         isOpen={!!selectedProject}
         onClose={() => setSelectedProject(null)}
         title={selectedProject?.title || ""}
-        size="md:max-w-[50%]"
+        size="md:max-w-4xl" 
       >
         <ProjectContent 
           project={selectedProject} 

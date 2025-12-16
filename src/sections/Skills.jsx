@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { skills } from "../data/skills";
-import { ChevronDownIcon } from "./../common/Icons";
-import SectionTitle from "./../common/Typography/SectionTitle";
+import { ChevronDownIcon } from "./../assets/Icons";
+import SectionTitle from "./../assets/SectionTitle";
+import Text from "./../assets/Text";
 
 const ITEM_VARIANTS = {
   hidden: { opacity: 0, y: 20 },
@@ -93,18 +94,19 @@ function Skills() {
   const [openGroupId, setOpenGroupId] = useState(null);
 
   return (
-    <div className="pt-12 md:pt-20 pb-12 md:pb-20">
+    <div>
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <SectionTitle className="text-slate-700 dark:text-slate-300">
+        <SectionTitle>
           Skills
         </SectionTitle>
-        <p className="section-subtitle max-w-2xl text-base mb-10 text-slate-700 dark:text-slate-300">
-          My expertise lies in crafting user-friendly, responsive, and mobile-first web applications. Dedicated to continuous learning, I stay updated on the latest technologies and use my expertise to tackle challenging tasks for successful project delivery.
-        </p>
+        <Text>
+My expertise lies in crafting user-friendly, responsive, and mobile-first web applications. Dedicated to continuous learning, I stay updated on the latest technologies and use my expertise to tackle challenging tasks for successful project delivery.
+        </Text>
+
       </motion.div>
 
       <div className="mt-6 space-y-4 max-w-full md:max-w-2xl md:w-[40rem] mx-auto">
