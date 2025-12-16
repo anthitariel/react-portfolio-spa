@@ -26,8 +26,10 @@ function ProjectTile({ item, onClick }) {
   return (
     <motion.article
       className="group relative rounded-xl border border-slate-300 dark:border-slate-800 
-                 bg-white dark:bg-slate-900/60 transition duration-300 shadow-lg hover:shadow-2xl 
-                 hover:shadow-accent/20 cursor-pointer overflow-hidden flex flex-col"
+                 bg-white dark:bg-slate-900/60 transition duration-300 shadow-lg 
+                 lg:hover:shadow-2xl lg:hover:shadow-accent/20 
+                 cursor-pointer overflow-hidden flex flex-col
+                 lg:min-h-[400px]" 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -35,28 +37,36 @@ function ProjectTile({ item, onClick }) {
       onClick={onClick}
     >
       <div
-        className="p-6 relative z-20 transition duration-300 flex-grow min-h-[200px] lg:min-h-[400px]
-                   group-hover:bg-accent group-hover:border-accent"
+        className="p-6 relative z-20 transition duration-300 
+                   /* lg:flex-grow та lg:min-h-[400px] залишено лише для десктопної анімації */
+                   lg:flex-grow lg:min-h-[400px] 
+                   lg:group-hover:bg-accent lg:group-hover:border-accent"
       >
-        <span className="text-xs uppercase font-semibold tracking-wider text-accent mb-2 block group-hover:text-white/80 transition">
+        <span className="text-xs uppercase font-semibold tracking-wider text-accent mb-2 block 
+                       lg:group-hover:text-white/80 transition">
           {level || source}
         </span>
 
-        <SectionTitle className="text-base md:text-xl font-bold mb-2 group-hover:text-white transition">
+        <SectionTitle className="text-base md:text-xl font-bold mb-2 
+                               lg:group-hover:text-white transition">
           {title}
         </SectionTitle>
 
-        <Text className="line-clamp-3"> 
+        <Text className="line-clamp-3 lg:group-hover:text-white"> 
           {tileDescription} 
         </Text>
       </div>
 
-      <div className="lg:hidden w-full aspect-square relative z-10 p-4 pt-0">
-          <img
-              src={imageSrc}
-              alt={title}
-              className="w-full h-full object-cover rounded-lg"
-          />
+      <div 
+        className="lg:hidden w-full relative z-10 overflow-hidden aspect-[16/9]" 
+      >
+        <img
+          src={imageSrc}
+          alt={title}
+          className="w-full h-full object-cover" 
+        />
+        
+        <div className="absolute inset-0 z-20 bg-black/50" />
       </div>
 
       <motion.div
