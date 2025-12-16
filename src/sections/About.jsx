@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import SectionTitle from "./../assets/SectionTitle";
-import SectionSubtitle from "./../assets/SectionTitle";
+import SectionSubtitle from "./../assets/SectionSubtitle";
 import Text from "./../assets/Text";
 import Button from "./../ui/Button"; 
 

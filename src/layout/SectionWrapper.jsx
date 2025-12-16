@@ -6,9 +6,11 @@ const SectionWrapper = ({ id, children, className = '' }) => {
         min-h-fit md:min-h-screen 
         flex items-start sm:items-center sm:justify-center 
         max-w-5xl mx-auto 
-        px-12
+        px-6 sm:px-12 lg:px-0
+        pt-28
+        lg:pt-0        
         pb-12    
-        sm:py-0      
+        sm:py-0
        ${className}`}
     >
       {children}

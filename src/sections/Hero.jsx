@@ -18,7 +18,7 @@ const IMAGE_ANIMATION = {
 // Hero section component with introduction and profile image
 function Hero() {
   return (
-    <div className="grid md:grid-cols-2 gap-10 items-center">
+    <div className="grid md:grid-cols-2 gap-10 items-center mt-6 sm:mt-0">
       {/* Left column: Text content */}
       <div className="flex flex-col justify-center">
         {/* Professional title badge */}
@@ -29,7 +29,7 @@ function Hero() {
         {/* Main headline with gradient text effect */}
         <motion.h1
           {...ANIMATION_CONFIG}
-          className="text-lg md:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-slate-700 dark:text-slate-300"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-slate-700 dark:text-slate-300"
         >
           I architect and build
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-sky-400">
@@ -64,7 +64,7 @@ function Hero() {
         target="_blank"
         rel="noreferrer"
         {...IMAGE_ANIMATION}
-        className="relative block group h-[70%] min-h-[400px] md:min-h-[500px]"
+        className="relative block group aspect-square md:aspect-auto md:h-full" 
       >
         {/* Background gradient blur effect */}
         <div className="absolute inset-0 rounded-3xl bg-accent/20 blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />

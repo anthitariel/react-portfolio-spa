@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import SectionTitle from "../assets/SectionTitle";
 import Text from "../assets/Text";
 
-const HEADER_OFFSET_PX = 120;
+const HEADER_OFFSET_PX = 120; 
 
 const truncateByWord = (text, maxWords = 30) => { 
     if (!text) return '';
@@ -27,7 +27,7 @@ function ProjectTile({ item, onClick }) {
     <motion.article
       className="group relative rounded-xl border border-slate-300 dark:border-slate-800 
                  bg-white dark:bg-slate-900/60 transition duration-300 shadow-lg hover:shadow-2xl 
-                 hover:shadow-accent/20 cursor-pointer overflow-hidden"
+                 hover:shadow-accent/20 cursor-pointer overflow-hidden flex flex-col"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -35,7 +35,7 @@ function ProjectTile({ item, onClick }) {
       onClick={onClick}
     >
       <div
-        className="p-6 relative z-20 transition duration-300 min-h-[350px]
+        className="p-6 relative z-20 transition duration-300 flex-grow min-h-[200px] lg:min-h-[400px]
                    group-hover:bg-accent group-hover:border-accent"
       >
         <span className="text-xs uppercase font-semibold tracking-wider text-accent mb-2 block group-hover:text-white/80 transition">
@@ -51,8 +51,16 @@ function ProjectTile({ item, onClick }) {
         </Text>
       </div>
 
+      <div className="lg:hidden w-full aspect-square relative z-10 p-4 pt-0">
+          <img
+              src={imageSrc}
+              alt={title}
+              className="w-full h-full object-cover rounded-lg"
+          />
+      </div>
+
       <motion.div
-        className="absolute inset-x-0 top-0 z-30 h-full"
+        className="hidden lg:block absolute inset-x-0 top-0 z-30 h-full"
         initial={{ y: "80%" }}
         whileHover={{ y: `${HEADER_OFFSET_PX}px` }}
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}

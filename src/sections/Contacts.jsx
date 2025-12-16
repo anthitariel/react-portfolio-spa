@@ -36,13 +36,8 @@ function Contacts() {
           Connect & Collaborate
           </SectionTitle>
 
-        <div className="max-w-xl mb-12">
           <Text>
-            I'm always open to discussing new opportunities, fascinating projects, or sharing insights on the modern web stack.
-          </Text>
-
-          <Text>
-            The quickest way to start a conversation is to send me a
+            I'm always open to discussing new opportunities, fascinating projects, or sharing insights on the modern web stack. The quickest way to start a conversation is to send me a
             <a href="mailto:anfiya17@gmail.com" className="text-accent font-medium hover:underline ml-1">
               message
             </a>
@@ -65,11 +60,11 @@ function Contacts() {
               GitHub
             </a>
           </Text>
-        </div>
+
       </motion.div>
 
       <motion.ul
-        className="flex flex-wrap gap-4 text-slate-500 dark:text-slate-400"
+        className="flex flex-wrap gap-4 text-slate-500 dark:text-slate-400 mb-64 sm:mb-0"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}

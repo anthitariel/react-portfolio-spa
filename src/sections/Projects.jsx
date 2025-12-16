@@ -114,9 +114,9 @@ function Projects() {
   useEffect(() => {
     const updatePerView = () => {
       const width = window.innerWidth;
-      if (width >= 1024) setPerView(3);
+      if (width >= 1024) setPerView(3); 
       else if (width >= 768) setPerView(2);
-      else setPerView(1);
+      else setPerView(1); 
     };
 
     updatePerView();
@@ -156,18 +156,18 @@ function Projects() {
 
 
   return (
-    <div className="pt-12 md:pt-20 pb-12 md:pb-20">
+    <div>
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: 0.5 }}
       >
-        <SectionTitle className="text-slate-700 dark:text-slate-300">
+        <SectionTitle>
             Case Studies
         </SectionTitle>
         
-        <Text className="section-subtitle max-w-2xl">
+        <Text>
           Guided by the K.I.S.S. principle and clean code practices, I build projects that are easy to use and maintain.
         </Text>
       </motion.div>
@@ -186,8 +186,8 @@ function Projects() {
               className="absolute left-0 top-1/2 -translate-y-1/2 z-10 
                          text-accent w-10 h-10 transition-colors 
                          hover:text-sky-400 dark:hover:text-sky-300 
-                         disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
-              aria-label="Previous slide"
+                         disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center
+                         lg:flex hidden"
             >
               <ChevronLeftIcon className="w-8 h-8"/>
             </button>
@@ -198,7 +198,8 @@ function Projects() {
               className="absolute right-0 top-1/2 -translate-y-1/2 z-10 
                          text-accent w-10 h-10 transition-colors 
                          hover:text-sky-400 dark:hover:text-sky-300 
-                         disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
+                         disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center
+                         lg:flex hidden"
               aria-label="Next slide"
             >
               <ChevronRightIcon className="w-8 h-8"/>
