@@ -1,77 +1,56 @@
+import { themeStyles as s } from "../shared/themeStyles";
+import SectionWrapper from "../shared/SectionWrapper";
+import Button from "../shared/Button"; 
 import { motion } from "framer-motion";
-import SectionTitle from "./../assets/SectionTitle";
-import SectionSubtitle from "./../assets/SectionSubtitle";
-import Text from "./../assets/Text";
-import Button from "./../ui/Button"; 
 
-const DIAMOND_CLASSES = "text-xs md:text-base flex items-start before:content-['◆'] before:text-accent before:text-xs before:mr-2 before:mt-1 before:shrink-0";
-
+/*  Key selling points constant. */
 const VALUE_POINTS = [
   "Deep expertise across the entire frontend product lifecycle.",
-  "Proven ability to bridge technical and design gaps with cross-functional teams.",
-  "Performance and Accessibility embedded in the development workflow (A11y & Lighthouse standards).",
-  "Full feature ownership, from initial concept and estimation to deployment and monitoring.",
+  "Proven ability to bridge technical and design gaps.",
+  "Performance and Accessibility embedded in workflow.",
+  "Full feature ownership, from concept to deployment.",
 ];
 
-const DiamondListItem = ({ children }) => (
-  <li className={DIAMOND_CLASSES}>
-    {children}
-  </li>
-);
-
-function About() {
+function About({ onNavigate }) { 
   return (
-    <div>
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="mb-4"
-      >
-        <SectionTitle>
-          About
-        </SectionTitle>
+    <SectionWrapper id="about">
+      {/* Container: Aligns content left and applies global fade-up animation */}
+      <motion.div className="flex flex-col text-left items-start" {...s.animations.fadeUp}>
         
-        <Text >
-          I collaborate with product teams to ship performant, accessible and visually consistent applications. My expertise lies in creating user-friendly, responsive, mobile-first interfaces with focus on clean architecture.
-          </Text>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-      >
-        <SectionSubtitle>
+        <h2 className={s.typography.sectionTitle}>About</h2>
+        <p className={`${s.typography.text} leading-snug md:leading-relaxed`}>
+          I collaborate with product teams to ship performant, accessible and visually consistent applications. 
+          My expertise lies in creating user-friendly, responsive, mobile-first interfaces.
+        </p>
+        <h3 className={`${s.typography.sectionSubtitle} mt-6 md:mt-10 mb-3 md:mb-4`}>
           Value Delivered
-        </SectionSubtitle>
+        </h3>
 
-        <ul className="space-y-2">
+        {/* Bullet List: spacing adjusted for mobile vs desktop touch targets */}
+        <ul className="space-y-2 md:space-y-4">
           {VALUE_POINTS.map((point, index) => (
-            <DiamondListItem key={index}>
+            <li key={index} className={s.ui.diamondList}>
               {point}
-            </DiamondListItem>
+            </li>
           ))}
         </ul>
-      </motion.div>
 
-     <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.25 }}
-        className="mt-6"
-      >
-        <Button
-          as="a" 
-          href="#contacts"
-          variant="link"
-          className="text-slate-700 dark:text-slate-200 
-                     hover:border-accent hover:text-accent" 
-        >
-          Get in Touch &rarr;
-        </Button>
+        {/* CTA: !p-0 ensures link text aligns perfectly with paragraph start */}
+        <div className="mt-4 md:mt-8 flex justify-start w-full">
+          <Button 
+            variant="link" 
+            size="sm" 
+            onClick={() => onNavigate("contacts")} 
+            className="group !p-0 !justify-start !text-left"
+          >
+            <span className="flex items-center">
+              Get in touch
+              <span className="inline-block transition-transform group-hover:translate-x-1 ml-2">→</span>
+            </span>
+          </Button>
+        </div>
       </motion.div>
-    </div>
+    </SectionWrapper>
   );
 }
 

@@ -3,7 +3,7 @@
   "homepage": "https://anthitariel.github.io/react-portfolio-spa",
   "version": "1.0.0",
   "private": true,
-  "description": "Frontend Software Engineer portfolio built with React, Vite, Framer Motion, and Tailwind CSS.",
+  "description": "Professional Mobile-First Software Engineer portfolio. Built with React 18, Vite, Framer Motion, and a centralized Tailwind CSS design system.",
   "author": "Anfisa Domashova",
   "license": "MIT",
   "type": "module",

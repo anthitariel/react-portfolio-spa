@@ -1,31 +1,20 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { skills } from "../data/skills";
-import { ChevronDownIcon } from "./../assets/Icons";
-import SectionTitle from "./../assets/SectionTitle";
-import Text from "./../assets/Text";
+import { ChevronDownIcon } from "../shared/Icons";
+import { themeStyles as s } from "../shared/themeStyles";
+import SectionWrapper from "../shared/SectionWrapper";
 
-const ITEM_VARIANTS = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay }
-  })
-};
-
+/**
+ * Height animation for accordion: smoothly expands/collapses content.
+ */
 const CONTENT_VARIANTS = {
   hidden: { height: 0, opacity: 0, marginTop: 0 },
   visible: {
     height: "auto",
     opacity: 1,
-    marginTop: "1.5rem",
-    transition: {
-      type: "spring",
-      stiffness: 300,
-      damping: 30,
-      opacity: { duration: 0.2 }
-    }
+    marginTop: "0.75rem",
+    transition: { type: "spring", stiffness: 300, damping: 30 }
   },
   exit: { height: 0, opacity: 0, marginTop: 0 }
 };
@@ -34,51 +23,33 @@ const SkillAccordionItem = ({ group, delay, openGroupId, setOpenGroupId }) => {
   const isOpen = openGroupId === group.title;
   const contentId = `skills-content-${group.title.replace(/\s/g, "-")}`;
 
-  const handleToggle = () => {
-    setOpenGroupId(isOpen ? null : group.title);
-  };
-
   return (
-    <motion.div
-      className="rounded-xl border border-slate-300 bg-gradient-to-br from-white/80 to-slate-100/80 shadow-xl dark:border-slate-800 dark:bg-gradient-to-br dark:from-slate-900/70 dark:to-slate-950/70"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      variants={ITEM_VARIANTS}
-      custom={delay}
+    <motion.div 
+      className={`${s.cards.base} ${s.cards.glass} w-full`} 
+      {...s.animations.fadeUp} 
+      custom={delay} 
       layout
     >
       <button
-        onClick={handleToggle}
-        className="w-full flex items-center justify-between p-6 text-left hover:opacity-80 transition-opacity"
+        onClick={() => setOpenGroupId(isOpen ? null : group.title)}
+        // md:whitespace-nowrap: ensures width is calculated based on single-line text.
+        className="w-full flex items-center justify-between p-4 md:p-6 text-left hover:opacity-80 transition-opacity md:whitespace-nowrap gap-6"
         aria-expanded={isOpen}
         aria-controls={contentId}
       >
-        <h3 className="text-xl font-semibold">{group.title}</h3>
-        <ChevronDownIcon
-          className={`h-5 w-5 text-slate-400 transition-transform duration-300 ${
-            isOpen ? "rotate-180" : "rotate-0"
-          }`}
-        />
+        <span className={`${s.typography.sectionSubtitle} !mb-0 border-none pb-0 text-base md:text-xl leading-tight`}>
+          {group.title}
+        </span>
+        <ChevronDownIcon className={`h-4 w-4 md:h-5 md:w-5 text-slate-400 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`} />
       </button>
 
       <AnimatePresence initial={false}>
         {isOpen && (
-          <motion.div
-            id={contentId}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={CONTENT_VARIANTS}
-            className="px-6 overflow-hidden"
-            layout
-          >
-            <ul className="flex flex-wrap gap-2 text-sm text-slate-300 pb-6">
-              {group.items.map(item => (
-                <li
-                  key={item}
-                  className="rounded-md border border-slate-700 px-3 py-1 bg-slate-800/60 hover:bg-slate-700/80 hover:text-base transition-all font-medium"
-                >
+          <motion.div id={contentId} variants={CONTENT_VARIANTS} initial="hidden" animate="visible" exit="exit" className="px-4 md:px-6 overflow-hidden" layout>
+            {/* Tech badges: stacks on mobile, wraps on desktop. */}
+            <ul className="flex flex-col md:flex-row md:flex-wrap gap-2 pb-4 md:pb-6">
+              {group.items.map((item) => (
+                <li key={item} className={`${s.ui.badge} w-fit`}>
                   {item}
                 </li>
               ))}
@@ -94,33 +65,29 @@ function Skills() {
   const [openGroupId, setOpenGroupId] = useState(null);
 
   return (
-    <div>
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <SectionTitle>
-          Skills
-        </SectionTitle>
-        <Text>
-My expertise lies in crafting user-friendly, responsive, and mobile-first web applications. Dedicated to continuous learning, I stay updated on the latest technologies and use my expertise to tackle challenging tasks for successful project delivery.
-        </Text>
-
+    <SectionWrapper id="skills">
+      {/* Header aligned and animated to match About.jsx structure. */}
+      <motion.div className="flex flex-col text-left items-start" {...s.animations.fadeUp}>
+        <h2 className={s.typography.sectionTitle}>Skills</h2>
+        <p className={`${s.typography.text} leading-snug md:leading-relaxed`}>
+          My expertise lies in crafting user-friendly web applications with a focus on performant interfaces.
+        </p>
       </motion.div>
 
-      <div className="mt-6 space-y-4 max-w-full md:max-w-2xl md:w-[40rem] mx-auto">
+      {/* md:inline-flex: Shrinks the container to match the widest title on desktop. */}
+      <div className="mt-4 md:mt-6 space-y-3 md:space-y-4 flex md:inline-flex flex-col w-full md:w-auto md:min-w-[450px]">
         {skills.map((group, index) => (
           <SkillAccordionItem
             key={group.title}
             group={group}
+            // Staggered entrance animation delay.
             delay={0.3 + index * 0.1}
             openGroupId={openGroupId}
             setOpenGroupId={setOpenGroupId}
           />
         ))}
       </div>
-    </div>
+    </SectionWrapper>
   );
 }
 

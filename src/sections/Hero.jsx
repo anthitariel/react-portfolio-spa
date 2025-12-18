@@ -1,92 +1,73 @@
 import { motion } from "framer-motion";
-import Button from "./../ui/Button";
+import Button from "../shared/Button";
+import { themeStyles as s } from "../shared/themeStyles";
+import SectionWrapper from "../shared/SectionWrapper";
 
-// Animation configuration for staggered entrance effects
-const ANIMATION_CONFIG = {
-  initial: { opacity: 0, y: 12 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-};
-
-// Image animation variant for profile photo entrance
+/**
+ * Scale and fade entrance animation for hero media.
+ */
 const IMAGE_ANIMATION = {
-  initial: { opacity: 0, scale: 0.9, y: 16 },
+  initial: { opacity: 0, scale: 0.9, y: 12 },
   animate: { opacity: 1, scale: 1, y: 0 },
-  transition: { duration: 0.6, delay: 0.3 }
+  transition: { duration: 0.6, delay: 0.2 }
 };
 
-// Hero section component with introduction and profile image
-function Hero() {
+function Hero({ onNavigate }) {
   return (
-    <div className="grid md:grid-cols-2 gap-10 items-center mt-6 sm:mt-0">
-      {/* Left column: Text content */}
-      <div className="flex flex-col justify-center">
-        {/* Professional title badge */}
-        <p className="text-sm uppercase tracking-[0.3em] text-accent mb-4">
-          Software Engineer
-        </p>
+    <SectionWrapper id="home">
+      {/* 2-Column Grid: Stacks on mobile, splits 50/50 on desktop. */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
+        
+        {/* TEXT: Uses global typography tokens for consistent font scale. */}
+        <div className="flex flex-col justify-center text-left">
+          <p className={s.typography.label}>Software Engineer</p>
 
-        {/* Main headline with gradient text effect */}
-        <motion.h1
-          {...ANIMATION_CONFIG}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-slate-700 dark:text-slate-300"
-        >
-          I architect and build
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-sky-400">
-            {" "}Scalable Web Experiences.
-          </span>
-        </motion.h1>
+          <h1 className={`${s.typography.hero} mb-3 md:mb-6`}>
+            I architect and build
+            {/* Gradient clip: Ties the primary accent color into the heading. */}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-sky-400"> digital experiences.</span>
+          </h1>
 
-        {/* Subheading description with staggered animation */}
-        <motion.p
-          {...ANIMATION_CONFIG}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="text-sm md:text-lg text-slate-700 dark:text-slate-300 mb-8 max-w-xl"
-        >
-          I specialize in the design and implementation of high-performance, resilient, and mobile-first user interfaces. I drive feature ownership from concept to production, focusing on clean, maintainable architecture.
-        </motion.p>
+          <p className={`${s.typography.text} leading-snug md:leading-relaxed`}>
+            Passionate about building high-quality, scalable web applications with a focus on performance and user experience.
+          </p>
 
-        {/* Call-to-action button with animation delay */}
-        <motion.div
-          {...ANIMATION_CONFIG}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          className="flex flex-wrap gap-4"
-        >
-          <Button as="a" href="#projects"> 
-            View Case Studies
-          </Button>
-        </motion.div>
-      </div>
-
-      {/* Right column: Profile image with Instagram link */}
-      <motion.a
-        href="https://www.instagram.com/anthitariel/"
-        target="_blank"
-        rel="noreferrer"
-        {...IMAGE_ANIMATION}
-        className="relative block group aspect-square md:aspect-auto md:h-full" 
-      >
-        {/* Background gradient blur effect */}
-        <div className="absolute inset-0 rounded-3xl bg-accent/20 blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-        {/* Image container with hover effects and rounded borders */}
-        <div className="relative w-full h-full rounded-3xl border border-slate-700/80 overflow-hidden group-hover:shadow-2xl group-hover:shadow-accent/40 transition-all duration-500">
-          <img
-            src="/react-portfolio-spa/img/hero-photo.jpg"
-            alt="Anfisa Domashova - Software Engineer"
-            loading="lazy"
-            className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-          />
-
-          {/* Hover overlay with Instagram call-to-action */}
-          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <span className="text-white text-base tracking-wide border-b border-white pb-1">
-              Open Instagram
-            </span>
+          <div className="mb-2 md:mb-6 flex flex-wrap gap-4">
+            <Button
+              variant="primary" 
+              size="lg" 
+              onClick={() => onNavigate("projects")} 
+              className="cursor-pointer"
+            > 
+              View Case Studies
+            </Button>
           </div>
         </div>
-      </motion.a>
-    </div>
+
+        {/* IMAGE: aspect-square keeps the profile area consistent across devices. */}
+        <motion.a
+          href="https://www.instagram.com/anthitariel/"
+          target="_blank"
+          rel="noreferrer"
+          {...IMAGE_ANIMATION}
+          className="relative block group aspect-square w-full max-w-[490px] mx-0" 
+        >
+          {/* Subtle glow: Animates from 40% to 100% opacity on group hover. */}
+          <div className="absolute inset-0 rounded-2xl md:rounded-3xl bg-accent/20 blur-lg opacity-40 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          
+          {/* Border-box: clips the internal image scale effect. */}
+          <div className="relative w-full h-full border border-slate-700/80 overflow-hidden rounded-2xl md:rounded-3xl transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-accent/40">
+            <img
+              src="/react-portfolio-spa/img/hero-photo.jpg"
+              alt="Anfisa Domashova"
+              loading="lazy"
+              // object-top: Prevents head-cropping on different aspect ratios.
+              className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+          </div>
+        </motion.a>
+      </div>
+    </SectionWrapper>
   );
 }
 
